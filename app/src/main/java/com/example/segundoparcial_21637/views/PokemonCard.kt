@@ -1,10 +1,10 @@
 package com.example.segundoparcial_21637.views
 
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
@@ -25,42 +25,33 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.example.segundoparcial_21637.R
-import com.example.segundoparcial_21637.models.Personaje
+import com.example.segundoparcial_21637.models.Pokemon
 
 @OptIn(ExperimentalMaterial3Api::class)
+
 @Composable
-fun PersonajeCard(personaje: Personaje, navHostController: NavHostController) {
+fun PokemonCard(pokemon:  Pokemon, navHostController: NavHostController) {
     Card(
         colors = CardDefaults.cardColors(containerColor = Color(0xFFDCE3E9)),
-        onClick = {
-            navHostController.navigate("Personajes/${personaje.imagen}/${personaje.profesion}")
-        }
     ) {
-        Row (
+        Column (
             modifier = Modifier
-                .fillMaxWidth()
                 .padding(4.dp),
-            verticalAlignment = Alignment.CenterVertically
+            horizontalAlignment = Alignment.CenterHorizontally
         ) {
             Image(
-                painter = painterResource(id = personaje.imagen), contentDescription = "Personaje",
+                painter = painterResource(id = pokemon.imagen), contentDescription = "Personaje",
                 contentScale = ContentScale.Crop,
-                modifier = Modifier.size(100.dp)
+                modifier = Modifier.size(150.dp)
             )
-            Spacer(modifier = Modifier.width(24.dp))
-            Column() {
-                Text(text = personaje.profesion)
-                Spacer(modifier = Modifier.height(18.dp))
-                Text(text = personaje.sexo)
-                Spacer(modifier = Modifier.height(18.dp))
-                Text(text = "${personaje.edad} años")
-            }
+            Spacer(modifier = Modifier.height(24.dp))
+            Text(text = pokemon.nombre)
         }
     }
 }
 
-@Preview(showBackground = true)
+@Preview
 @Composable
-fun test() {
-    PersonajeCard(Personaje(R.drawable.male04, 12, "chico", "Profesor"), rememberNavController())
+fun test3() {
+    PokemonCard(pokemon = Pokemon(R.drawable.pokemon03, "Sprigito"), navHostController = rememberNavController())
 }

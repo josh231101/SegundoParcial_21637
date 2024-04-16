@@ -16,14 +16,15 @@ fun NavManager() {
             PersonajesView(navHostController)
         }
 
-        composable(route = "Personajes/{imagen}/",
+        composable(route = "Personajes/{imagen}/{profesion}",
             arguments = listOf(
                 navArgument("imagen") { type = NavType.IntType},
             )
         ) {
             parametros ->
                 val imagen = parametros.arguments?.getInt("imagen") ?:0
-                PersonajeFormView(navHostController, imagen)
+                val profesion = parametros.arguments?.getString("profesion") ?: ""
+                PersonajeFormView(navHostController, imagen, profesion)
         }
     }
 }
