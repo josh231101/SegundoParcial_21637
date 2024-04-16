@@ -51,6 +51,9 @@ fun PersonajeForm(navHostController: NavHostController, imagen: Int, profesion: 
         mutableStateOf(false)
     }
     val context = LocalContext.current
+    fun onPokemonClick(pokemonName: String) {
+        selectedPokemon = pokemonName
+    }
     Column(modifier = Modifier
         .fillMaxSize()
         .padding(14.dp), horizontalAlignment = Alignment.CenterHorizontally) {
@@ -83,7 +86,7 @@ fun PersonajeForm(navHostController: NavHostController, imagen: Int, profesion: 
         LazyRow {
             items(PokemonViewModel().getPokemonList()) {
                     pokemon ->
-                PokemonCard(pokemon = pokemon, navHostController = navHostController)
+                PokemonCard(pokemon = pokemon, navHostController = navHostController, ::onPokemonClick)
                 Spacer(modifier = Modifier.size(16.dp))
             }
         }

@@ -30,9 +30,12 @@ import com.example.segundoparcial_21637.models.Pokemon
 @OptIn(ExperimentalMaterial3Api::class)
 
 @Composable
-fun PokemonCard(pokemon:  Pokemon, navHostController: NavHostController) {
+fun PokemonCard(pokemon:  Pokemon, navHostController: NavHostController, onPokemonClick: (pokemonName: String) -> Unit) {
     Card(
         colors = CardDefaults.cardColors(containerColor = Color(0xFFDCE3E9)),
+        onClick = {
+            onPokemonClick(pokemon.nombre)
+        }
     ) {
         Column (
             modifier = Modifier
@@ -50,8 +53,3 @@ fun PokemonCard(pokemon:  Pokemon, navHostController: NavHostController) {
     }
 }
 
-@Preview
-@Composable
-fun test3() {
-    PokemonCard(pokemon = Pokemon(R.drawable.pokemon03, "Sprigito"), navHostController = rememberNavController())
-}
